@@ -1,0 +1,6 @@
+.object-card {
+    width: 500px;
+    height: 400px;
+    background-color: rgb(74, 141, 199);
+    flex: none
+}
