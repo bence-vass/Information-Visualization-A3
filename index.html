@@ -19,10 +19,12 @@
     <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 
     <!-- d3-cloud for word cloud -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.7/d3.layout.cloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/d3.layout.cloud.js"></script>
+
+
 </head>
 
-<body class="bg-gray-900 text-white p-6" style="margin-bottom: 5rem;">
+<body class="bg-gray-900 text-white p-6" style="margin-bottom: 5rem; overflow: hidden;">
 
     <header>
         <div class="lg:flex lg:items-center lg:justify-between bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -197,15 +199,13 @@
         <!-- Row 2 END-->
 
         <!-- Row 3 -->
-        <!-- <div class="bg-blue-400 col-span-3">
-            <div id="objectShowcase" class="w-full overflow-x-auto flex gap-6">asd</div>
-        </div> -->
-        <!-- Row 3 END-->
-
-        <div>
-            <h3>Disclousers</h3>
+        <div class="col-span-3">
+            <h2 class="text-2xl sm:text-3xl font-bold my-8">
+                Highlights of the selected period:
+            </h2>
+            <div id="wordCloud" class="w-full overflow-x-auto flex gap-6"></div>
         </div>
-
+        <!-- Row 3 END-->
 
 
 
@@ -215,19 +215,78 @@
         <div id="timelineChart" class="mx-auto fixed justify-center col-span-3 w-full fixed bg-white dark:bg-gray-900"
             style="bottom: 0; left: 0; padding-bottom: 0.5rem; padding-top: 0.5rem;"></div>
 
-        <!-- 
-        <div id="loadingChart" class="justify-center flex-row mt-8">
-            <div class="flex justify-center mb-8">
-                <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
-                    role="status">
-                    <span
-                        class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-                </div>
-            </div>
-            <h2>Loading Chart Data...</h2>
-        </div> -->
+
     </div>
     <!-- Grid END -->
+
+
+    <div id="loadingChart" class="bg-gray-900 justify-center flex-row mt-8 absolute w-full " style="height: 100%; top: 10rem">
+        <div class="flex justify-center my-8">
+            <div class="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+                role="status">
+                <span
+                    class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
+            </div>
+        </div>
+        <h2 class="text-center">Loading Chart Data...</h2>
+    </div>
+
+
+
+    <div class="p-6 mx-auto w-fit">
+        <h3 class="text-xl font-semibold mb-4 text-white">Disclosures</h3>
+
+        <div class="mb-6 text-gray-300">
+            The following examples have been used as guidance for implementation.
+        </div>
+
+        <div class="grid grid-cols-2 gap-6">
+            <div class="space-y-4">
+                <div>
+                    <div class="font-medium text-white">Bar Chart</div>
+                    <div class="text-sm text-blue-400">Horizontal bar chart</div>
+                    <a href="https://observablehq.com/@d3/horizontal-bar-chart/2"
+                        class="text-sm text-gray-400">observablehq.com/@d3/horizontal-bar-chart</a>
+                </div>
+
+                <div>
+                    <div class="font-medium text-white">Line Chart</div>
+                    <div class="text-sm text-blue-400">Inline labels</div>
+                    <a href="https://observablehq.com/@d3/inline-labels/2"
+                        class="text-sm text-gray-400">observablehq.com/@d3/inline-labels</a>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div>
+                    <div class="font-medium text-white">Brushing</div>
+                    <div class="text-sm text-blue-400">Brush Snapping (Transitions)</div>
+                    <a href="https://observablehq.com/@d3/brush-snapping-transitions"
+                        class="text-sm text-gray-400">observablehq.com/@d3/brush-snapping</a>
+                </div>
+
+                <div>
+                    <div class="font-medium text-white">Word Cloud</div>
+                    <div class="space-y-1">
+                        <a href="https://www.jasondavies.com/wordcloud/"
+                            class="block text-sm text-gray-400">jasondavies.com/wordcloud</a>
+                        <a href="https://d3-graph-gallery.com/graph/wordcloud_basic.html"
+                            class="block text-sm text-gray-400">d3-graph-gallery.com/wordcloud</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-4 mt-6 border-t border-gray-600">
+            <div class="space-y-2 text-gray-300">
+                <div>Generative AI assisted with placeholder content and D3.js documentation navigation.</div>
+                <div>A truncated dataset is loaded to minimize loading time. The complete dataset is available in
+                    the repository.</div>
+            </div>
+        </div>
+    </div>
+
+
 
 
     <!-- script for loading the data -->
@@ -244,6 +303,9 @@
 
     <!-- bar chart script -->
     <script type="module" src="scripts/barChart.js"></script>
+
+    <!-- word cloud script -->
+    <script type="module" src="scripts/wordCloud.js"></script>
 
 
 </body>

@@ -2,6 +2,7 @@ import { minX, maxX, DATA} from "../script.js";
 import { updatePieChart, NO_CATEGORIES_PIE } from "./pieChart.js";
 import { getLineData, NO_CATEGORIES_LINE, updateLineChart } from "./lineChart.js";
 import { NO_CATEGORIES_BAR, updateBarChart } from "./barChart.js";
+import { updateWordCloud } from "./wordCloud.js";
 
 // Time Period Selection Brush
 // ================================================================================= //
@@ -29,6 +30,8 @@ const updateSelectedData = () => {
     updateLineChart(SELECTED_DATA, NO_CATEGORIES_LINE)
 
     updateBarChart(SELECTED_DATA, NO_CATEGORIES_BAR)
+
+    updateWordCloud(SELECTED_DATA)
 }
 
 // Set Time Period Display

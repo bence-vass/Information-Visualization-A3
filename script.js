@@ -7,7 +7,8 @@ const dataImportFn = (d) => {
     // skip rows with missing data
     if (
         d.AccessionYear === "" ||
-        d["Object Name"] === ""
+        d["Object Name"] === "" ||
+        d["Title"] === ""
     ) {
         return null;
     }
@@ -16,18 +17,21 @@ const dataImportFn = (d) => {
         "AccessionYear": parseInt(d.AccessionYear),
         "ObjectName": d["Object Name"].toString(),
         "ObjectID": d["Object ID"].toString(),
+        "Title": d["Title"].toString(),
+        "isHighlight": Boolean(d["Is Highlight"]),
     }
 }
-
-export const DATA = await d3.csv("MetObjects.csv", dataImportFn);   // local file
-const dataUrl = "https://media.githubusercontent.com/media/bence-vass/Information-Visualization-A3/refs/heads/main/MetObjects.csv"
-// const DATA = await d3.csv(dataUrl, dataImportFn); // online file
+// export const DATA = await d3.csv("MetObjects.csv", dataImportFn);   // local file
+const dataUrl = "https://media.githubusercontent.com/media/bence-vass/Information-Visualization-A3/refs/heads/main/MetObjects.min.csv"
+const DATA = await d3.csv(dataUrl, dataImportFn); // online file
 
 // remove loading spinner after data is loaded
 const loadingElement = document.getElementById("loadingChart");
 if (loadingElement) {
     loadingElement.remove();
 }
+document.body.style.overflow = "auto";
+
 
 export const minX = d3.min(DATA, d => d.AccessionYear);
 export const maxX = d3.max(DATA, d => d.AccessionYear);
