@@ -21,23 +21,31 @@ const dataImportFn = (d) => {
         "isHighlight": Boolean(d["Is Highlight"]),
     }
 }
-// export const DATA = await d3.csv("MetObjects.csv", dataImportFn);   // local file
-const dataUrl = "https://raw.githubusercontent.com/bence-vass/Information-Visualization-A3/refs/heads/main/MetObjects.min.csv"
-export const DATA = await d3.csv(dataUrl, dataImportFn); // online file
 
-// remove loading spinner after data is loaded
-const loadingElement = document.getElementById("loadingChart");
-if (loadingElement) {
-    loadingElement.remove();
-}
-document.body.style.overflow = "auto";
+export const dataPromise = (async () => {
+
+    // export const DATA = await d3.csv("MetObjects.csv", dataImportFn);   // local file
+    const dataUrl = "https://raw.githubusercontent.com/bence-vass/Information-Visualization-A3/refs/heads/main/MetObjects.min.csv"
+    const DATA = await d3.csv(dataUrl, dataImportFn); // online file
+
+    // remove loading spinner after data is loaded
+    const loadingElement = document.getElementById("loadingChart");
+    if (loadingElement) {
+        loadingElement.remove();
+    }
+    document.body.style.overflow = "auto";
 
 
-export const minX = d3.min(DATA, d => d.AccessionYear);
-export const maxX = d3.max(DATA, d => d.AccessionYear);
+    const minX = d3.min(DATA, d => d.AccessionYear);
+    const maxX = d3.max(DATA, d => d.AccessionYear);
 
-console.log("Complete Data:");
-console.log(DATA);
+    console.log("Complete Data:");
+    console.log(DATA);
+
+    return { DATA, minX, maxX }
+
+})()
+
 
 // ================================================================================== //
 // LOADING DATA END
