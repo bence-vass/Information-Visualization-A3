@@ -118,6 +118,7 @@
             <div id="barChartContainer" class="mx-auto ">
 
                 <div class="mb-4 flex">
+                    <span class="content-center mr-2 font-medium">Bins:</span>
                     <input id="barChartTopInput" type="number" min="3" max="25" value="12"
                         class="mx-4 w-20 text-center px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 dark:bg-gray-900" />
                     <button id="refreshBarChartBtn" style="border: #fff solid 2px"
@@ -176,9 +177,15 @@
         <!-- Row 2 - Cell 2 -->
         <div class="col-span-2">
             <div class="mb-4 flex">
+                <span class="content-center mr-2 font-medium">From the</span>
+                <input id="lineChartShiftInput" type="number" min="0" max="20" value="7"
+                    class="mx-4 w-20 text-center px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 dark:bg-gray-900" />
+                <span class="content-center mr-2 font-medium">th largest growing the Top: </span>
                 <input id="lineChartTopInput" type="number" min="3" max="20" value="7"
                     class="mx-4 w-20 text-center px-3 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400 dark:bg-gray-900" />
-                <button id="refreshLineChartBtn" style="border: #fff solid 2px"
+                <span class="content-center mr-2 font-medium">categories</span>
+
+                    <button id="refreshLineChartBtn" style="border: #fff solid 2px"
                     class="flex items-center justify-center p-2 text-white rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 transition-transform duration-200">
                     <span class="mr-4 ml-2">Refresh</span>
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#fff"

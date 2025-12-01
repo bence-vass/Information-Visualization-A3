@@ -9,7 +9,7 @@ const marginBottom = 30;
 const marginLeft = 40;
 
 
-export const getLineData = (selectedData, topN) => {
+export const getLineData = (selectedData, topN, shift) => {
     if (!selectedData || selectedData.length === 0) return [];
     topN = (topN !== null) ? topN : 10
 
@@ -20,7 +20,6 @@ export const getLineData = (selectedData, topN) => {
     ).map(([key, value]) => ({ ObjectName: key, Count: value }));
 
     const sorted = grouppedData.sort((a, b) => d3.descending(a.Count, b.Count));
-    const shift = 5
     const topCategories = sorted.slice(
         // magic of js
         Number(0) + Number(shift),
@@ -122,6 +121,10 @@ const color = d3.scaleOrdinal(d3.schemeObservable10);
 const lineChartTopInputEl = document.getElementById("lineChartTopInput")
 export let NO_CATEGORIES_LINE = lineChartTopInputEl.value
 
+
+const lineChartShiftInputEl = document.getElementById("lineChartShiftInput")
+export let SHIFT = lineChartTopInputEl.value
+
 export const initLineChart = (data) => {
     const flatData = data.flatMap(obj => obj.value)
 
@@ -135,9 +138,9 @@ export const initLineChart = (data) => {
 }
 
 export let isLineChartRefreshing = false
-export const updateLineChart = (data, topN) => {
+export const updateLineChart = (data, topN, shift) => {
 
-    data = getLineData(data, topN)
+    data = getLineData(data, topN, shift)
 
     initLineChart(data)
 
@@ -320,12 +323,19 @@ refreshPieChartBtnEl.addEventListener("click", e => {
         console.log("Already Refreshing...")
         return
     }
-    updateLineChart(SELECTED_DATA, NO_CATEGORIES_LINE)
+    updateLineChart(SELECTED_DATA, NO_CATEGORIES_LINE, SHIFT)
 })
 
 lineChartTopInputEl.addEventListener("change", e => {
     // console.log("changing top n line")
     NO_CATEGORIES_LINE = e.target.value
-    updateLineChart(SELECTED_DATA, NO_CATEGORIES_LINE)
+    updateLineChart(SELECTED_DATA, NO_CATEGORIES_LINE, SHIFT)
+})
+
+
+lineChartShiftInputEl.addEventListener("change", e => {
+    // console.log("changing top n line")
+    SHIFT = e.target.value
+    updateLineChart(SELECTED_DATA, NO_CATEGORIES_LINE, SHIFT)
 })
 
